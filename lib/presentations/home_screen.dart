@@ -5,9 +5,12 @@ import 'package:flutter_example/presentations/active_screen.dart';
 import 'package:flutter_example/presentations/calls_screen.dart';
 import 'package:flutter_example/presentations/groups_screen.dart';
 import 'package:flutter_example/presentations/messages_screen.dart';
+import 'package:flutter_example/presentations/widgets/app_text_field.dart';
+import 'package:flutter_example/presentations/widgets/custom_text_field.dart';
 
 class HomeScreen extends StatelessWidget
 {
+  var searchKeyController = TextEditingController();
   @override
   Widget build(BuildContext context)
   {
@@ -36,33 +39,10 @@ class HomeScreen extends StatelessWidget
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        5.0,
-                      ),
-                      color: Colors.white70,
-                    ),
-                    padding: EdgeInsets.all(
-                      5.0,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.search,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 15.0,
-                        ),
-                        Text(
-                          'Search',
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
+                  child: CustomTextField(
+                      hintText: 'Search',
+                      icon: Icons.search,
+                    textController: searchKeyController,
                   ),
                 ),
               ],
