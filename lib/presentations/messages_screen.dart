@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/presentations/widgets/app_text.dart';
 
 class MessagesScreen extends StatelessWidget {
   const MessagesScreen({Key? key}) : super(key: key);
@@ -12,13 +13,7 @@ class MessagesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Sponsored',
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-            ),
+            AppText(text: 'Sponsored'),
             SizedBox(
               height: 20.0,
             ),
@@ -26,13 +21,7 @@ class MessagesScreen extends StatelessWidget {
             SizedBox(
               height: 20.0,
             ),
-            Text(
-              'More Conversations',
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-            ),
+            AppText(text: 'More Conversations'),
             SizedBox(
               height: 20.0,
             ),
