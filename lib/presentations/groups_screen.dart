@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class GroupsScreen extends StatelessWidget {
-  const GroupsScreen({Key? key}) : super(key: key);
+  const GroupsScreen();
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text('Groups Page'),
-    );
-  }
+  Widget build(BuildContext context) => const Text('Groups Page');
 }

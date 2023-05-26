@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class CallsScreen extends StatelessWidget {
-  const CallsScreen({Key? key}) : super(key: key);
+  const CallsScreen();
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text('Calls Page'),
-    );
-  }
+  Widget build(BuildContext context) => const Text('Calls Page');
+
 }

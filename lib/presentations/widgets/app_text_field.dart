@@ -16,7 +16,7 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:EdgeInsets.only(left: 24, right: 24),
+      margin:const EdgeInsets.only(left: 24, right: 24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
       ),
@@ -33,11 +33,11 @@ class AppTextField extends StatelessWidget {
               size: 17,
             ),
             //focusedBorder
-            focusedBorder: UnderlineInputBorder(
+            focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.black),
             ),
             //enabled Border
-            enabledBorder: UnderlineInputBorder(
+            enabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.grey),
             ),
             // enabledBorder

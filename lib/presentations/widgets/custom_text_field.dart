@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -17,7 +16,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      margin:EdgeInsets.all(5),
+      margin:const EdgeInsets.all(5),
       decoration:BoxDecoration(
         borderRadius: BorderRadius.circular(
           5.0,
@@ -30,18 +29,13 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           //hintText,
             hintText: hintText,
-            hintStyle: TextStyle(fontSize: 15),
+            hintStyle: const TextStyle(fontSize: 15),
             // prefixIcon
             prefixIcon: Icon(icon,
               color:Colors.grey,
               size: 17,
             ),
           border: InputBorder.none,
-            //focusedBorder
-            // enabledBorder
-            //
-            // border
-
         ),
       ),
     );

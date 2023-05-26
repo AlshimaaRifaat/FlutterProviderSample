@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class ActiveScreen extends StatelessWidget {
-  const ActiveScreen({Key? key}) : super(key: key);
+  const ActiveScreen();
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text('Active Page'),
-    );
-  }
+  Widget build(BuildContext context) => const Text('Active Page');
 }
