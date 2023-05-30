@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/features/home/data/models/message_response.dart';
 
 class ChatItem extends StatelessWidget {
-  const ChatItem({Key? key}) : super(key: key);
+   ChatItem(this.msgsList,this.index,{Key? key}) : super(key: key);
 
+  List<MessageResponse> msgsList = [];
+  int index;
   @override
   Widget build(BuildContext context)  =>
       Row(
@@ -35,10 +38,10 @@ class ChatItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  children: const [
+                  children:  [
                     Text(
-                      'Shimaa Refaat',
-                      style: TextStyle(
+                      msgsList[index].userName ?? '',
+                      style: const TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -47,15 +50,15 @@ class ChatItem extends StatelessWidget {
                     ),
                     Spacer(),
                     Text(
-                      'Mon',
+                      msgsList[index].time ?? '',
                     ),
                   ],
                 ),
                 const SizedBox(
                   height: 5.0,
                 ),
-                const Text(
-                  'Hello shimaa ,My name is Aliaa , How are you?',
+                 Text(
+                  msgsList[index].message ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),

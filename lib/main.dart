@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_example/features/home/presentations/view_model/messages_viewmodel.dart';
+import 'package:flutter_example/features/home/presentations/views/home_screen.dart';
 import 'package:flutter_example/features/login/presentations/view_model/sign_in_viewmodel.dart';
 import 'package:flutter_example/features/login/presentations/views/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +9,7 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_)=>SignInViewModel()),
+    ChangeNotifierProvider(create: (_)=>MessagesViewModel()),
   ],
       child:const MyApp()));
 }
@@ -44,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home:  HomeScreen(),
     );
   }
 }

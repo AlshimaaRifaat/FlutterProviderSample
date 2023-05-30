@@ -15,7 +15,7 @@ class APICall {
         headers: headers);
   }
 
-  Future<http.Response> messagesList(SignInBody body) async {
+  Future<http.Response> getMessagesList() async {
     Map<String, String> headers = {'Content-Type': 'application/json'};
     return await http.get(
         Uri.parse(Constants.messages),
