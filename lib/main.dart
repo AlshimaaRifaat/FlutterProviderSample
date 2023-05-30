@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_example/presentations/login_screen.dart';
-import 'package:flutter_example/presentations/view_model/sign_in_viewmodel.dart';
+import 'package:flutter_example/features/login/presentations/view_model/sign_in_viewmodel.dart';
+import 'package:flutter_example/features/login/presentations/views/login_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
