@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/core/models/sign_in_model.dart';
 import 'package:flutter_example/presentations/home_screen.dart';
-import 'package:flutter_example/presentations/utils/app_constants.dart';
+import 'package:flutter_example/presentations/view_model/sign_in_viewmodel.dart';
+import 'package:flutter_example/utils/app_constants.dart';
 import 'package:flutter_example/presentations/widgets/app_text_field.dart';
+import 'package:flutter_example/utils/common_utils.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -11,17 +15,33 @@ class LoginScreen extends StatelessWidget {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
 
-    return  Scaffold(
-      body: Column(
+    Future<void> _signIn() async{
+      String email= emailController.text.trim();
+      String password= passwordController.text.trim();
+      SignInBody signInBody = SignInBody(email: email, password: password);
+      var provider= Provider.of<SignInViewModel>(context,listen: false);
+      await provider.signIn(signInBody);
+      if(provider.isBack ) {
+        CommonUtil().showToast(provider.signInResponse.message ?? '');
+        Navigator.push(context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      }
+    }
+    return Scaffold(
+      body: Consumer<SignInViewModel>(builder: (context, data, child) {
+        return data.loading  ?
+        Center(child: CircularProgressIndicator(),)
+        : Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
               height: 120,
             ),
-             const Text( Constants.login,
+            const Text(Constants.login,
               style: TextStyle(
-                  fontSize: 22,
+                fontSize: 22,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -30,7 +50,7 @@ class LoginScreen extends StatelessWidget {
             ),
             AppTextField(
                 textController: emailController,
-                hintText:Constants.type_your_username ,
+                hintText: Constants.type_your_username,
                 icon: Icons.email),
             const SizedBox(
               height: 20,
@@ -42,34 +62,32 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  gradient: const LinearGradient(colors: [
-                    Colors.deepOrange,
-                    Colors.blue,
-                  ])),
+            GestureDetector(
+                onTap: () {
+                  _signIn();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        gradient: const LinearGradient(colors: [
+                          Colors.deepOrange,
+                          Colors.blue,
+                        ])),
 
-              child: const Center(
-                child: Text(
-                  Constants.LOGIN,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    child: const Center(
+                      child: Text(
+                        Constants.LOGIN,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
-          )),
+                )),
             const SizedBox(
               height: 30,
             ),
@@ -143,9 +161,12 @@ class LoginScreen extends StatelessWidget {
               height: 60,
             )
           ],
-        ),
+        );
+      }
+      ),
     );
   }
 
 
 }
+

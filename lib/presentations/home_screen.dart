@@ -3,7 +3,7 @@ import 'package:flutter_example/presentations/active_screen.dart';
 import 'package:flutter_example/presentations/calls_screen.dart';
 import 'package:flutter_example/presentations/groups_screen.dart';
 import 'package:flutter_example/presentations/messages_screen.dart';
-import 'package:flutter_example/presentations/utils/app_constants.dart';
+import 'package:flutter_example/utils/app_constants.dart';
 import 'package:flutter_example/presentations/widgets/custom_text_field.dart';
 
 class HomeScreen extends StatelessWidget
