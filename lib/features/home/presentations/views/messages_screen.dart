@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/app_constants.dart';
 import 'package:flutter_example/core/widgets/app_text.dart';
 import 'package:flutter_example/core/widgets/chat_item.dart';
 import 'package:flutter_example/core/widgets/expandable_widget.dart';
@@ -34,28 +35,28 @@ class MessagesScreen extends StatelessWidget {
               height: 20.0,
             ),
             Container(
-              child:  Consumer<MessagesViewModel>(builder: (context, item, child) {
-                 if (item.status == Status.loading) {
+              child:  Consumer<MessagesViewModel>(builder: (context, data, child) {
+                 if (data.status == Status.loading) {
                    return const Center(child: CircularProgressIndicator(),);
-                 } else if (item.status == Status.success) {
-                    return getAllMessagesList(msgsList);
-
-                 }else if (item.status == Status.noInternet) {
+                 } else if (data.status == Status.success) {
+                   return msgsList.length==0 ?  getAllMessagesList(data.messagesListResponse)
+                   : getAllMessagesList(msgsList);
+                 }else if (data.status == Status.noInternet) {
                    return const Material(
                      child: Center(
-                       child: Text('No internet Connection'),
+                       child: Text(Constants.no_internet_Connection),
                      ),
                    );
-                 }else if (item.status == Status.none) {
+                 }else if (data.status == Status.none) {
                    return const Material(
                      child: Center(
-                       child: Text('Wel come'),
+                       child: Text(Constants.welcome),
                      ),
                    );
                  } else {
                    return const Material(
                      child: Center(
-                       child: Text('API Call Error'),
+                       child: Text(Constants.API_Call_Error),
                      ),
                    );
                  }

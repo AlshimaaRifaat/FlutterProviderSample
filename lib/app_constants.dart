@@ -13,5 +13,8 @@ class Constants {
   static const String type_your_username = 'Type your username';
   static const String type_your_password = 'Type your password';
   static const String signUp = 'Sign up';
+  static const String no_internet_Connection = 'No internet Connection';
+  static const String welcome = 'Wel come';
+  static const String API_Call_Error = 'API Call Error';
 
 }
