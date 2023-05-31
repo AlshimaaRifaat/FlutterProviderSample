@@ -15,17 +15,20 @@ class ChatItem extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 30.0,
-                child: Image.asset(
-                    'assets/images/user.png'),
+                child: Image.network(
+                    msgsList[index].image ?? ''),
               ),
-              const Padding(
-                padding: EdgeInsetsDirectional.only(
+               Padding(
+                padding: const EdgeInsetsDirectional.only(
                   bottom: 3.0,
                   end: 3.0,
                 ),
-                child: CircleAvatar(
-                  radius: 7.0,
-                  backgroundColor: Colors.green,
+                child: Visibility(
+                  visible:  msgsList[index].isActive! ,
+                  child: const CircleAvatar(
+                    radius: 7.0,
+                    backgroundColor:   Colors.green,
+                  ),
                 ),
               ),
             ],

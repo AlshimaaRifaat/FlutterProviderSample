@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: CustomTextField(
-                      hintText: 'Search',
+                      hintText: Constants.search ,
                       icon: Icons.search,
                       textController: searchKeyController,
                       onChanged: (value) {
@@ -121,9 +121,9 @@ class _HomeScreenState extends State<HomeScreen> {
           body: TabBarView(
             children: [
               MessagesScreen(msgsList),
-              ActiveScreen(),
-              GroupsScreen(),
-              CallsScreen()
+              const ActiveScreen(),
+              const GroupsScreen(),
+              const CallsScreen()
             ],
           ),
         );

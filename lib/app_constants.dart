@@ -16,5 +16,8 @@ class Constants {
   static const String no_internet_Connection = 'No internet Connection';
   static const String welcome = 'Wel come';
   static const String API_Call_Error = 'API Call Error';
+  static const String search = 'Search';
+  static const String sponsored = 'Sponsored';
+  static const String moreConversations = 'More Conversations';
 
 }

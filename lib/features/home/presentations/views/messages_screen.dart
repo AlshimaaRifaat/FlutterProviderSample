@@ -22,7 +22,7 @@ class MessagesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppText(text: 'Sponsored'),
+            const AppText(text: Constants.sponsored),
             const SizedBox(
               height: 20.0,
             ),
@@ -30,7 +30,7 @@ class MessagesScreen extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            const AppText(text: 'More Conversations'),
+            const AppText(text: Constants.moreConversations),
             const SizedBox(
               height: 20.0,
             ),
@@ -70,7 +70,7 @@ class MessagesScreen extends StatelessWidget {
 
   Widget getAllMessagesList(List<MessageResponse> msgsList) {
       return ListView.separated(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) => ChatItem(msgsList, index),
         separatorBuilder: (context, index) =>
