@@ -1,93 +1,134 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/app_constants.dart';
 import 'package:flutter_example/core/widgets/custom_text_field.dart';
+import 'package:flutter_example/features/home/data/models/message_response.dart';
+import 'package:flutter_example/features/home/presentations/view_model/messages_viewmodel.dart';
 import 'package:flutter_example/features/home/presentations/views/messages_screen.dart';
 import 'package:flutter_example/features/login/presentations/views/active_screen.dart';
 import 'package:flutter_example/features/login/presentations/views/calls_screen.dart';
 import 'package:flutter_example/features/login/presentations/views/groups_screen.dart';
+import 'package:provider/provider.dart';
 
 
-class HomeScreen extends StatelessWidget
+class HomeScreen extends StatefulWidget
 {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   var searchKeyController = TextEditingController();
+
+  String? value;
+
+  late MessageResponse messagesListResponse;
+
+  List<MessageResponse> msgsList = [];
+
+  late MessagesViewModel _msgViewModel;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _msgViewModel = Provider.of<MessagesViewModel>(context, listen: false);
+    _msgViewModel.getSearchList();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) => DefaultTabController(
     length: 4,
     child: SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.grey[100],
-          elevation: 0.0,
-          titleSpacing: 20.0,
-          leading:   Row(
-            children: [
-              const SizedBox(
-                width: 15.0,
-              ),
-              CircleAvatar(
-                radius: 20.0,
-                child: Image.asset('assets/images/user.png'),
-              ),
-            ],
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: CustomTextField(
-                  hintText: 'Search',
-                  icon: Icons.search,
-                  textController: searchKeyController,
+      child: Consumer<MessagesViewModel>(builder: (context, data, child) {
+       return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.grey[100],
+            elevation: 0.0,
+            titleSpacing: 20.0,
+            leading: Row(
+              children: [
+                const SizedBox(
+                  width: 15.0,
                 ),
-              ),
-            ],
-          ),
-          actions: [
-
-            IconButton(
-              icon: const CircleAvatar(
-                radius: 15.0,
-                backgroundColor: Colors.blue,
-                child: Icon(
-                  Icons.edit,
-                  size: 16.0,
-                  color: Colors.white,
+                CircleAvatar(
+                  radius: 20.0,
+                  child: Image.asset('assets/images/user.png'),
                 ),
-              ),
-              onPressed: () {},
+              ],
             ),
-          ],
-          bottom: const TabBar(
-            labelColor: Colors.blue,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: CustomTextField(
+                      hintText: 'Search',
+                      icon: Icons.search,
+                      textController: searchKeyController,
+                      onChanged: (value) {
+                          if(value.isEmpty){
+                            setState(() {
+                              msgsList=data.messagesListResponse;
+                            });
 
-            unselectedLabelColor: Colors.grey,
+                          }else{
+                           setState(() {
+                             msgsList=data.messagesListResponse.where((element) =>
+                             element.userName.toLowerCase().contains(value.toLowerCase())).toList();
+                           });
+                          }
 
-            labelStyle: TextStyle(fontWeight: FontWeight.bold),
 
-            unselectedLabelStyle:  TextStyle(fontStyle: FontStyle.italic),
+                      }
+                  ),
+                ),
+              ],
+            ),
+            actions: [
 
-            tabs: [
-              Tab( text:Constants.msgs,),
-              Tab( text:Constants.active),
-              Tab( text:Constants.groups),
-              Tab( text: Constants.calls),
+              IconButton(
+                icon: const CircleAvatar(
+                  radius: 15.0,
+                  backgroundColor: Colors.blue,
+                  child: Icon(
+                    Icons.edit,
+                    size: 16.0,
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {},
+              ),
+            ],
+            bottom: const TabBar(
+              labelColor: Colors.blue,
+
+              unselectedLabelColor: Colors.grey,
+
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
+
+              unselectedLabelStyle: TextStyle(fontStyle: FontStyle.italic),
+
+              tabs: [
+                Tab(text: Constants.msgs,),
+                Tab(text: Constants.active),
+                Tab(text: Constants.groups),
+                Tab(text: Constants.calls),
+              ],
+            ),
+          ),
+
+          body: TabBarView(
+            children: [
+              MessagesScreen(msgsList),
+              ActiveScreen(),
+              GroupsScreen(),
+              CallsScreen()
             ],
           ),
-        ),
-
-        body:  TabBarView(
-          children: [ MessagesScreen(),ActiveScreen(),GroupsScreen(),CallsScreen()],
-        ) ,
+        );
+      }
       ),
     ),
   );
-
-
-
-
-
-
-
 }

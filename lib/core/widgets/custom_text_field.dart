@@ -5,11 +5,16 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   bool isObscure;
+  final void Function(String)? onSubmitted;
+  final void Function(String)? onChanged;
+
   CustomTextField({Key? key,
 
     required this.textController,
     required this.hintText,
     required this.icon,
+     this.onSubmitted,
+     this.onChanged,
     this.isObscure=false}) : super(key: key);
 
   @override
@@ -37,6 +42,8 @@ class CustomTextField extends StatelessWidget {
             ),
           border: InputBorder.none,
         ),
+        onSubmitted: onSubmitted ,
+        onChanged: onChanged,
       ),
     );
   }

@@ -18,21 +18,21 @@ class MessageResponse {
 */
 
   String? message;
-  String? userName;
+  String userName ='';
   String? image;
   String? time;
   String? id;
 
   MessageResponse({
     this.message,
-    this.userName,
+    required this.userName,
     this.image,
     this.time,
     this.id,
   });
   MessageResponse.fromJson(Map<String, dynamic> json) {
     message = json[_jsonKeyMessagesResponseMessage]?.toString();
-    userName = json[_jsonKeyMessagesResponseUserName]?.toString();
+    userName = json[_jsonKeyMessagesResponseUserName];
     image = json[_jsonKeyMessagesResponseImage]?.toString();
     time = json[_jsonKeyMessagesResponseTime]?.toString();
     id = json[_jsonKeyMessagesResponseId]?.toString();
