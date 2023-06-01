@@ -35,7 +35,9 @@ class MessagesScreen extends StatelessWidget {
               height: 20.0,
             ),
             Container(
-              child:  Consumer<MessagesViewModel>(builder: (context, data, child) {
+              child:  Selector<MessagesViewModel,dynamic>(
+                  selector: (context,provs1)=> provs1,
+                  builder: (context, data, child) {
                  if (data.status == Status.loading) {
                    return const Center(child: CircularProgressIndicator(),);
                  } else if (data.status == Status.success) {
