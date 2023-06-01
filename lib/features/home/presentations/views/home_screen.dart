@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     length: 4,
     child: SafeArea(
       child: Consumer<MessagesViewModel>(builder: (context, data, child) {
-       return Scaffold(
+        return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.grey[100],
@@ -61,27 +61,28 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: CustomTextField(
-                      hintText: Constants.search ,
-                      icon: Icons.search,
-                      textController: searchKeyController,
-                      onChanged: (value) {
-                          if(value.isEmpty){
+                Consumer<MessagesViewModel>(builder: (context, data, child) {
+                  return Expanded(
+                    child: CustomTextField(
+                        hintText: Constants.search,
+                        icon: Icons.search,
+                        textController: searchKeyController,
+                        onChanged: (value) {
+                          if (value.isEmpty) {
                             setState(() {
-                              msgsList=data.messagesListResponse;
+                              msgsList = data.messagesListResponse;
                             });
-
-                          }else{
-                           setState(() {
-                             msgsList=data.messagesListResponse.where((element) =>
-                             element.userName.toLowerCase().contains(value.toLowerCase())).toList();
-                           });
+                          } else {
+                            setState(() {
+                              msgsList = data.messagesListResponse.where((element) =>
+                                  element.userName.toLowerCase().contains(
+                                      value.toLowerCase())).toList();
+                            });
                           }
-
-
-                      }
-                  ),
+                        }
+                    ),
+                  );
+                }
                 ),
               ],
             ),
