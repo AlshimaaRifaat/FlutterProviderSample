@@ -61,27 +61,28 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: CustomTextField(
-                      hintText: Constants.search ,
-                      icon: Icons.search,
-                      textController: searchKeyController,
-                      onChanged: (value) {
-                          if(value.isEmpty){
-                            setState(() {
-                              msgsList=data.messagesListResponse;
-                            });
-
-                          }else{
-                           setState(() {
-                             msgsList=data.messagesListResponse.where((element) =>
-                             element.userName.toLowerCase().contains(value.toLowerCase())).toList();
-                           });
-                          }
-
-
-                      }
-                  ),
+          Consumer<MessagesViewModel>(builder: (context, data, child) {
+             return Expanded(
+              child: CustomTextField(
+                  hintText: Constants.search,
+                  icon: Icons.search,
+                  textController: searchKeyController,
+                  onChanged: (value) {
+                    if (value.isEmpty) {
+                      setState(() {
+                        msgsList = data.messagesListResponse;
+                      });
+                    } else {
+                      setState(() {
+                        msgsList = data.messagesListResponse.where((element) =>
+                            element.userName.toLowerCase().contains(
+                                value.toLowerCase())).toList();
+                      });
+                    }
+                  }
+              ),
+            );
+          }
                 ),
               ],
             ),
