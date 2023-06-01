@@ -29,8 +29,10 @@ class LoginScreen extends StatelessWidget {
       }
     }
     return Scaffold(
-      body: Consumer<SignInViewModel>(builder: (context, data, child) {
-        return data.loading  ?
+      body: Selector<SignInViewModel,dynamic>(
+          selector: (context,provs1)=> provs1.loading,
+          builder: (context, prov, child) {
+        return prov  ?
         Center(child: CircularProgressIndicator(),)
         : Column(
           mainAxisAlignment: MainAxisAlignment.start,
