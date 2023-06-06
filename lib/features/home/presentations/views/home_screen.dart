@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/app_constants.dart';
+import 'package:flutter_example/app_images.dart';
 import 'package:flutter_example/core/widgets/custom_text_field.dart';
 import 'package:flutter_example/features/home/data/models/message_response.dart';
 import 'package:flutter_example/features/home/presentations/view_model/messages_viewmodel.dart';
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 CircleAvatar(
                   radius: 20.0,
-                  child: Image.asset('assets/images/user.png'),
+                  child: Image.asset(AppImages.user),
                 ),
               ],
             ),
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Consumer<MessagesViewModel>(builder: (context, data, child) {
                   return Expanded(
                     child: CustomTextField(
-                        hintText: Constants.search,
+                        hintText: AppConstants.search,
                         icon: Icons.search,
                         textController: searchKeyController,
                         onChanged: (value) {
@@ -111,10 +112,10 @@ class _HomeScreenState extends State<HomeScreen> {
               unselectedLabelStyle: TextStyle(fontStyle: FontStyle.italic),
 
               tabs: [
-                Tab(text: Constants.msgs,),
-                Tab(text: Constants.active),
-                Tab(text: Constants.groups),
-                Tab(text: Constants.calls),
+                Tab(text: AppConstants.msgs,),
+                Tab(text: AppConstants.active),
+                Tab(text: AppConstants.groups),
+                Tab(text: AppConstants.calls),
               ],
             ),
           ),

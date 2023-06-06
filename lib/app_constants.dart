@@ -1,4 +1,4 @@
-class Constants {
+class AppConstants {
   static const baseUrl='https://student.valuxapps.com/api/';
   static const signIn=baseUrl+'login';
   static const fakeBaseURL='https://647449b37de100807b1a9428.mockapi.io/api/v1/';
@@ -19,5 +19,6 @@ class Constants {
   static const String search = 'Search';
   static const String sponsored = 'Sponsored';
   static const String moreConversations = 'More Conversations';
+
 
 }

@@ -22,7 +22,7 @@ class MessagesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppText(text: Constants.sponsored),
+            const AppText(text: AppConstants.sponsored),
             const SizedBox(
               height: 20.0,
             ),
@@ -30,7 +30,7 @@ class MessagesScreen extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            const AppText(text: Constants.moreConversations),
+            const AppText(text: AppConstants.moreConversations),
             const SizedBox(
               height: 20.0,
             ),
@@ -46,19 +46,19 @@ class MessagesScreen extends StatelessWidget {
                  }else if (data.status == Status.noInternet) {
                    return const Material(
                      child: Center(
-                       child: Text(Constants.no_internet_Connection),
+                       child: Text(AppConstants.no_internet_Connection),
                      ),
                    );
                  }else if (data.status == Status.none) {
                    return const Material(
                      child: Center(
-                       child: Text(Constants.welcome),
+                       child: Text(AppConstants.welcome),
                      ),
                    );
                  } else {
                    return const Material(
                      child: Center(
-                       child: Text(Constants.API_Call_Error),
+                       child: Text(AppConstants.API_Call_Error),
                      ),
                    );
                  }

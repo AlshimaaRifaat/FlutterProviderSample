@@ -10,7 +10,7 @@ class APICall {
   Future<http.Response> signIn(SignInBody body) async {
     Map<String, String> headers = {'Content-Type': 'application/json'};
     return await http.post(
-        Uri.parse(Constants.signIn),
+        Uri.parse(AppConstants.signIn),
         body: jsonEncode(body.toJson()),
         headers: headers);
   }
@@ -18,7 +18,7 @@ class APICall {
   Future<http.Response> getMessagesList() async {
     Map<String, String> headers = {'Content-Type': 'application/json'};
     return await http.get(
-        Uri.parse(Constants.messages),
+        Uri.parse(AppConstants.messages),
         headers: headers);
   }
 
